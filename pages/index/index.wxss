@@ -1,0 +1,62 @@
+/*改为护眼色*/
+page {
+    background-color: #CAEACE;
+}
+
+.body{
+  padding:0px;
+  margin:0px;
+}
+
+.table {
+  font-size:0.8rem;
+}
+.td {
+  border:1px solid black;
+  width:20px;
+  text-align:center;
+  vertical-align:middle;
+}
+.tr {
+  display: flex;
+}
+
+/* ボーダーを隠す */
+.htop {
+  border-top-style:none;
+  margin-top: 1px;
+}
+.hbottom {
+  border-bottom-style:none;
+  margin-bottom: 1px;
+}
+.hleft {
+  border-left-style:none;
+  margin-left: 1px;
+}
+.hright {
+  border-right-style:none;
+  margin-right: 1px;
+}
+
+/* ルートの色 */
+.currentColor{
+  background-color:#ffa500 !important;
+}
+.moveColor{
+  background-color:#0ff;
+}
+.badColor{
+  background-color:#f0f;
+}
+
+.inputView{
+  border:  2px solid #f00;
+  border-radius: 40px;
+  background-color:#ffc;
+  width:100px;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,158 @@
+<view class="body">
+  <text>操作：在迷宫所在区域上下左右滑动\np.s:自动寻路微信渲染很慢</text>
+  <view class="table">
+   <view class="tr" style='height:40px'>
+    <view class="td">当前</view>
+    <view class="td">移动</view>
+    <view class="td">返回</view>
+   </view>
+   <view class="tr" style="height:20px">
+    <view class='td currentColor'></view>
+    <view class='td moveColor'></view>
+    <view class='td badColor'></view>
+   </view>
+  </view>
+  <view style="display: flex">
+    <text>大小:</text>
+    <view class="inputView">
+      <input type="number" id="mazeSize" placeholder="推荐:20～50" size="8" maxlength="2" value="{{mazeSize}}" bindinput="bindKeyInput" />
+    </view>
+  </view>
+  <view style="display: flex">
+    <button style="width:50%" id="start" bindtap="doStart">迷宫生成</button>
+    <button style="width:50%" bindtap="autoClear">自动寻路</button>
+  </view>
+
+  <view id="mapZone" bindtouchstart="mytouchstart" bindtouchmove="mytouchmove" bindtouchend="mytouchend">
+    <view id='map'>
+      <block wx:for="{{outMaze}}" wx:key="key">
+        <view class="tr" style="height:{{cellHeight}}">
+          <block wx:for="{{item.td}}" wx:key="key">
+            <view id='{{item.id}}' class='{{item.class}}'></view>
+          </block>
+        </view>
+      </block>
+      <!-- <view class='tr'>
+        <view id='1' class='{{c1}}'></view>
+        <view id='2' class='{{c2}}'></view>
+        <view id='3' class='{{c3}}'></view>
+        <view id='4' class='{{c4}}'></view>
+        <view id='5' class='{{c5}}'></view>
+        <view id='6' class='{{c6}}'></view>
+        <view id='7' class='{{c7}}'></view>
+        <view id='8' class='{{c8}}'></view>
+        <view id='9' class='{{c9}}'></view>
+        <view id='10' class='{{c10}}'></view>
+      </view>
+      <view class='tr'>
+        <view id='11' class='{{c11}}'></view>
+        <view id='12' class='{{c12}}'></view>
+        <view id='13' class='{{c13}}'></view>
+        <view id='14' class='{{c14}}'></view>
+        <view id='15' class='{{c15}}'></view>
+        <view id='16' class='{{c16}}'></view>
+        <view id='17' class='{{c17}}'></view>
+        <view id='18' class='{{c18}}'></view>
+        <view id='19' class='{{c19}}'></view>
+        <view id='20' class='{{c20}}'></view>
+      </view>
+      <view class='tr'>
+        <view id='21' class='{{c21}}'></view>
+        <view id='22' class='{{c22}}'></view>
+        <view id='23' class='{{c23}}'></view>
+        <view id='24' class='{{c24}}'></view>
+        <view id='25' class='{{c25}}'></view>
+        <view id='26' class='{{c26}}'></view>
+        <view id='27' class='{{c27}}'></view>
+        <view id='28' class='{{c28}}'></view>
+        <view id='29' class='{{c29}}'></view>
+        <view id='30' class='{{c30}}'></view>
+      </view>
+      <view class='tr'>
+        <view id='31' class='{{c31}}'></view>
+        <view id='32' class='{{c32}}'></view>
+        <view id='33' class='{{c33}}'></view>
+        <view id='34' class='{{c34}}'></view>
+        <view id='35' class='{{c35}}'></view>
+        <view id='36' class='{{c36}}'></view>
+        <view id='37' class='{{c37}}'></view>
+        <view id='38' class='{{c38}}'></view>
+        <view id='39' class='{{c39}}'></view>
+        <view id='40' class='{{c40}}'></view>
+      </view>
+      <view class='tr'>
+        <view id='41' class='{{c41}}'></view>
+        <view id='42' class='{{c42}}'></view>
+        <view id='43' class='{{c43}}'></view>
+        <view id='44' class='{{c44}}'></view>
+        <view id='45' class='{{c45}}'></view>
+        <view id='46' class='{{c46}}'></view>
+        <view id='47' class='{{c47}}'></view>
+        <view id='48' class='{{c48}}'></view>
+        <view id='49' class='{{c49}}'></view>
+        <view id='50' class='{{c50}}'></view>
+      </view>
+      <view class='tr'>
+        <view id='51' class='{{c51}}'></view>
+        <view id='52' class='{{c52}}'></view>
+        <view id='53' class='{{c53}}'></view>
+        <view id='54' class='{{c54}}'></view>
+        <view id='55' class='{{c55}}'></view>
+        <view id='56' class='{{c56}}'></view>
+        <view id='57' class='{{c57}}'></view>
+        <view id='58' class='{{c58}}'></view>
+        <view id='59' class='{{c59}}'></view>
+        <view id='60' class='{{c60}}'></view>
+      </view>
+      <view class='tr'>
+        <view id='61' class='{{c61}}'></view>
+        <view id='62' class='{{c62}}'></view>
+        <view id='63' class='{{c63}}'></view>
+        <view id='64' class='{{c64}}'></view>
+        <view id='65' class='{{c65}}'></view>
+        <view id='66' class='{{c66}}'></view>
+        <view id='67' class='{{c67}}'></view>
+        <view id='68' class='{{c68}}'></view>
+        <view id='69' class='{{c69}}'></view>
+        <view id='70' class='{{c70}}'></view>
+      </view>
+      <view class='tr'>
+        <view id='71' class='{{c71}}'></view>
+        <view id='72' class='{{c72}}'></view>
+        <view id='73' class='{{c73}}'></view>
+        <view id='74' class='{{c74}}'></view>
+        <view id='75' class='{{c75}}'></view>
+        <view id='76' class='{{c76}}'></view>
+        <view id='77' class='{{c77}}'></view>
+        <view id='78' class='{{c78}}'></view>
+        <view id='79' class='{{c79}}'></view>
+        <view id='80' class='{{c80}}'></view>
+      </view>
+      <view class='tr'>
+        <view id='81' class='{{c81}}'></view>
+        <view id='82' class='{{c82}}'></view>
+        <view id='83' class='{{c83}}'></view>
+        <view id='84' class='{{c84}}'></view>
+        <view id='85' class='{{c85}}'></view>
+        <view id='86' class='{{c86}}'></view>
+        <view id='87' class='{{c87}}'></view>
+        <view id='88' class='{{c88}}'></view>
+        <view id='89' class='{{c89}}'></view>
+        <view id='90' class='{{c90}}'></view>
+      </view>
+      <view class='tr'>
+        <view id='91' class='{{c91}}'></view>
+        <view id='92' class='{{c92}}'></view>
+        <view id='93' class='{{c93}}'></view>
+        <view id='94' class='{{c94}}'></view>
+        <view id='95' class='{{c95}}'></view>
+        <view id='96' class='{{c96}}'></view>
+        <view id='97' class='{{c97}}'></view>
+        <view id='98' class='{{c98}}'></view>
+        <view id='99' class='{{c99}}'></view>
+        <view id='100' class='{{c100}}'></view>
+      </view> -->
+    </view>
+    <text style="font-size:10px;color:{{showTag}}" bindtap="showLog">{{updateLog}}</text>
+  </view>
+</view>
